@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manufacturer Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
+    <!-- <script> scr="https://github.com/neocotic/qrious"</script> -->
+
+    <!-- Import the MetaMask JavaScript library -->
+    <script src="https://cdn.jsdelivr.net/npm/@metamask/detect-provider"></script> 
+    
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+
+
+    <link rel="stylesheet" href="/css/QR_GEN_style.css">
+  </head>
+  <style>
+        
+        .logout-button {
+        position: absolute;
+        top: 30px;
+        right: 100px;
+        width: 40px;
+        height: 30px;
+        display: inline-block;
+        background-color: aliceblue;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 5px;
+        text-decoration: none;
+        color: black;
+    }
+
+  .how-to-use {
+    position: absolute;
+    top: 12px;
+  }
+
+  #productid {
+    margin-top: 20px;
+  }
+  
+  .dropdown-content {
+    width: 23%;
+    height: auto;
+    line-height: 2;
+  }
+
+  /* #submit {
+    background-color: rgb(107, 106, 106);
+  }
+
+  #submit-button {
+    background-color: rgb(107, 106, 106);
+  } */
+
+  
+      
+    </style>
+  <body> 
+      
+      <a href="/M_Logout.html"><img src="https://cdn-icons-png.flaticon.com/512/10479/10479874.png" alt="" title="" class="logout-button"></a>
+
+        <div class="dropdown">
+          <!-- <a class="dropbtn"><img scr="https://cdn-icons-png.flaticon.com/512/6933/6933236.png"></a> -->
+          <a href=""><img src="   https://cdn-icons-png.flaticon.com/512/6933/6933236.png " width="50" height="50" class="how-to-use"></a>
+          <div class="dropdown-content">
+            <a href="#"> 1: Fill in all the information up to the date of expiration, and then submit it.</a>
+            <a href="#"> 2: After successfully submitting the data, you will receive an alert with a special code. </a>
+            <a href="#"> 3: Copy the code from the popup, put it in the Product_id field,</a>
+            <a href="#"> and then create the QR code  proceeding through the transaction using metamask.</a>
+            <a href="#">* do not have Metamask.*</a>
+            <a href="https://metamask.io/download/">click to Download Metamask</a>
+          </div>
+        </div>
+      
+    <div class="QR" id="medicine-form">
+      <label for="companyName">Company Name:</label>
+      <input type="text" id="companyName" name="companyName" placeholder="Enter company name" autocomplete="off" autocorrect="off" required><br><br>
+
+      <label for="medicineName">Medicine Name:</label>
+      <input type="text" id="medicineName" name="medicineName" placeholder="Enter Drug  name" autocomplete="off" autocorrect="off"  required><br><br>
+
+      <label for="dosage">Dosage:</label>
+      <input type="text" id="dosage" name="dosage" placeholder="Enter Dosage" autocomplete="off" autocorrect="off"  required><br><br>
+
+      <label for="dosage">Batch No:</label>
+      <input type="text" id="batchno" name="batchno" placeholder="Enter Batch no" autocomplete="off" autocorrect="off"  required><br><br>
+
+      <label for="mfgDate">Manufacturing Date:</label>
+      <input type="date" id="mfgDate" name="mfgDate"  required><br><br>
+
+      <label for="expDate">Expiry Date:</label>
+      <input type="date" id="expDate" name="expDate"  required><br><br>
+
+      <button type="submit" id="submit" name="submit">Submit</button>
+      
+      <label for="productid"> Product ID:</label>
+      <input type="text" id="productid" name="productid" placeholder="product id" autocomplete="off" autocorrect="off"  ><br><br>
+
+      
+
+      <button type="button" id="submit-button">Generate QR Code</button>
+    </div>
+
+    <div id="qrcode"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
+
+    <!-- ---------------------- The below script is for meatamask and QR code --------------------------------------- -->
+
+    <script>
+          // Initialize Web3 with Metamask provider
+          const web3 = new Web3(window.ethereum);
+    
+    // Handle transaction submission
+    async function handleTransaction() {
+    event.preventDefault();
+  
+  // Check if all fields are filled
+    const companyName = document.getElementById("companyName").value;
+    const medicineName = document.getElementById("medicineName").value;
+    const dosage = document.getElementById("dosage").value;
+    const batchno = document.getElementById("batchno").value;
+    const mfgDate = document.getElementById("mfgDate").value;
+    const expDate = document.getElementById("expDate").value;
+    const productid = document.getElementById("productid").value;
+  
+  if (!companyName || !medicineName || !dosage || !batchno || !mfgDate || !expDate || !productid) {
+    alert('Please fill all the fields');
+    return;
+  }
+
+      // Get user's accounts from Metamask
+      const accounts = await web3.eth.getAccounts();
+
+      // Get the transaction data
+      const txData = {
+        from: accounts[0],  // define the 'from' field with your account address
+        to: '0x4230A88D667513903fEB9Ff37a6561424E313529', // specify the contract address you want to interact with
+        value: web3.utils.toWei('1', 'ether'), // specify the amount of ether you want to send
+      };
+
+      // Send the transaction using the Metamask provider
+      await web3.eth.sendTransaction(txData)
+        .on('error', function(error) {
+          console.error('Transaction error:', error);
+          alert('Transaction failed: ' + error.message); // Display error message
+        });
+
+      // Show a success message to the user
+      alert('Transaction successful!');
+   
+      // Generate QR code data
+    const qrData = `Company Name: ${companyName}\n Medicine Name: ${medicineName}\n Dosage: ${dosage}\n batchno: ${batchno}\n Manufacturing Date: ${mfgDate}\n Expiry Date: ${expDate}\n Product ID: ${productid}`;
+    const qrCode = new QRCode(document.getElementById("qrcode"), {
+    text: qrData,
+    width: 256,
+    height: 256,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+  });
+
+  // Reset all the form fields
+document.getElementById("companyName").value = "";
+document.getElementById("medicineName").value = "";
+document.getElementById("dosage").value = "";
+document.getElementById("batchno").value = "";
+document.getElementById("mfgDate").value = "";
+document.getElementById("expDate").value = ""; 
+document.getElementById("productid").value = "";
+
+}
+
+    // Attach event listener to submit button
+    const submitButton  = document.getElementById('submit-button'); //      
+    submitButton.addEventListener('click', handleTransaction); // 
+
+
+    </script>
+
+<!-- ------------------------------- End Of script of meatamask and QR code ----------------------------------------------- -->
+
+    <script src="/js/submit.js"></script>

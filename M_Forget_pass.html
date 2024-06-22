@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forget Password</title>
+    <link rel="stylesheet" href="/css/forget_pass_style.css"/>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1>Enter Your Email to Reset the Password</h1>
+        <form>
+          <input type="email" id="email" placeholder="Enter your email" autocomplete="off" autocorrect="off" required />
+  
+          <button type="button" onclick="resetPassword()">Reset Password</button>
+        </form>
+      </div>
+    </div>
+    
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script>
+	const firebaseConfig = {
+	  apiKey: "AIzaSyBIDCMdPTu2FrRWMSjMTraqT8dl2QukNQY",
+	  authDomain: "auth-app-5c204.firebaseapp.com",
+	  databaseURL: "https://auth-app-5c204-default-rtdb.firebaseio.com",
+	  projectId: "auth-app-5c204",
+	  storageBucket: "auth-app-5c204.appspot.com",
+	  messagingSenderId: "628979260576",
+	  appId: "1:628979260576:web:2ccb3998834c1fa45dfdc5"
+	};
+
+  firebase.initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  
+  function resetPassword() {
+    const email = document.getElementById("email").value;
+  
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        alert("Password reset email sent!");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(error.message);
+      });
+
+      document.getElementById("email").value = " ";
+  }
+    </script>
+  </body>
+</html>

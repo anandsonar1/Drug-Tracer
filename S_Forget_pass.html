@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forget Password</title>
+    <link rel="stylesheet" href="/css/forget_pass_style.css"/>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1>Enter Your Email to Reset the Password</h1>
+        <form>
+          <input type="email" id="email" placeholder="Enter your email" autocomplete="off" autocorrect="off" required />
+  
+          <button type="button" onclick="resetPassword()">Reset Password</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script>
+	const firebaseConfig = {
+		apiKey: "AIzaSyAOUEjHTWL4WX3v9jyXZjZy2QPQHV6Dmkw",
+    authDomain: "purva-1153a.firebaseapp.com",
+		databaseURL: "https://purva-1153a-default-rtdb.firebaseio.com",
+		projectId: "purva-1153a",
+		storageBucket: "purva-1153a.appspot.com",
+		messagingSenderId: "788919454683",
+		appId: "1:788919454683:web:68b37c53a9895dcfb2f5fe"
+	};
+
+  firebase.initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  
+  function resetPassword() {
+    const email = document.getElementById("email").value;
+  
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        alert("Password reset email sent!");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(error.message);
+      });
+  }
+    </script>
+  </body>
+</html>

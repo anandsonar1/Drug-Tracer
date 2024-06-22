@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
+    <title>Consumer Dashboard</title>
+    <link rel="stylesheet" href="/css/U_QRR.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome CDN Link for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  </head>
+
+  <style>
+        
+        .logout-button {
+        position: absolute;
+        top: 30px;
+        right: 100px;
+        width: 40px;
+        height: 30px;
+        display: inline-block;
+        background-color: aliceblue;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 5px;
+        text-decoration: none;
+        color: black;
+    }
+
+  #search {
+    padding: 5px;
+  }
+
+  .dropdown-content {
+    width: 23%;
+    height: auto;
+    line-height: 2;
+  }
+  .img {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+  }
+      
+    </style>
+
+  <body>
+    <a><img src="https://cdn-icons-png.flaticon.com/512/10479/10479874.png" alt="" title="" class="logout-button" onclick="logout()"></a>
+
+    <div class="dropdown">
+      <!-- <a class="dropbtn"><img scr="https://cdn-icons-png.flaticon.com/512/6933/6933236.png"></a> -->
+      <a href="" class="img"><img src="   https://cdn-icons-png.flaticon.com/512/6933/6933236.png " width="50" height="50" class="how-to-use"></a>
+      <div class="dropdown-content">
+        <a href="#"> 1: Upload the QR code available on Drugs package.</a>
+        <a href="#"> 2: Track the drug.</a>
+        <!-- <a href="#"> 3: Copy the code from the alert, put it in the Product_id field,</a>
+        <a href="#"> and then create the QR code  proceeding through the transaction using metamask.</a>
+        <a href="#">* do not have Metamask.*</a>
+        <a href="https://metamask.io/download/">click to Download Metamask</a> -->
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <form action="#">
+        <input type="file" hidden>
+        <img src="#" alt="qr-code">
+        <div class="content">
+          <i class="fas fa-cloud-upload"></i>
+          <p>Upload QR Code to Read</p>
+        </div>
+      </form>
+      <div class="details">
+        <textarea spellcheck="false" disabled></textarea>
+        <div class="buttons">
+          <button class="close">Close</button>
+          <button class="copy">Copy Text</button>
+        </div>
+      </div>
+      
+    </div>
+
+          <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+<!-- Firebase Config -->
+<script>
+	const firebaseConfig = {
+	apiKey: "AIzaSyDhcM5ozmWtW60l5BOIPbb5s0goTUX2gpI",
+    authDomain: "user-auth-1df83.firebaseapp.com",
+    databaseURL: "https://user-auth-1df83-default-rtdb.firebaseio.com",
+    projectId: "user-auth-1df83",
+    storageBucket: "user-auth-1df83.appspot.com",
+    messagingSenderId: "734942339763",
+    appId: "1:734942339763:web:b284167281f988a07bc6c6"
+	};
+</script>
+
+<!-- Logout Script -->
+<script src="/js/U_logout.js"></script>
+<script src="/js/QR_read_script.js"></script>
+
+  </body>
+</html>

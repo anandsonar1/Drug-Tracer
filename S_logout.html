@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Logout</title>
+                    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <link rel="stylesheet" href="/css/QR_GEN_style.css">
+  </head>
+  <style>
+        
+    /* .logout-button {
+      position: center;
+      top: 100px;
+      left: 50px;
+      width: 100px;
+      height: 35px;
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin :0 auto;
+      
+  } */
+
+  button.logout-button {
+        display: block;
+        margin: 0 auto;
+        background-color: #0b0b0b;
+        color: rgb(161, 161, 161);
+        border-radius: 20px;
+        width: 300px;
+        height: 40px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        padding: 10px 20px;
+      }
+
+      button.logout-button:hover {
+        cursor: pointer;
+        background-color: rgb(93, 93, 93);
+        color: white;
+        font-weight: bold;
+      }
+
+  body {
+  /* background-color: #000; */
+  background: #b5b5b7;
+  font-family: Arial, sans-serif;
+}
+
+      button.logout-button a {
+        margin-top: -1.5em;
+      }
+      h1{
+        color: rgb(14, 12, 12);
+        position: center;
+        padding: 90px;
+        padding-bottom: 20px;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        text-align: center;
+        /* font-family: 'Readex Pro' */
+      }
+
+      .wrapper {
+        margin: auto;
+      }
+
+      h2 {
+        padding-bottom: 20px;
+      }
+      
+    </style>
+  
+  <body>
+    <div class="wrapper">
+      <h1>Thank you for Using Drug Tracer. </h1>
+      <h2>Please click the button below to logout</h2>
+      <button class="logout-button" onclick="logout()" ><a style="text-decoration:none; color:white;">Click here to logout</a></button>
+    </div>
+    
+
+    <script>
+          const firebaseConfig = {
+        apiKey: "AIzaSyAOUEjHTWL4WX3v9jyXZjZy2QPQHV6Dmkw",
+        authDomain: "purva-1153a.firebaseapp.com",
+		databaseURL: "https://purva-1153a-default-rtdb.firebaseio.com",
+		projectId: "purva-1153a",
+		storageBucket: "purva-1153a.appspot.com",
+		messagingSenderId: "788919454683",
+		appId: "1:788919454683:web:68b37c53a9895dcfb2f5fe"
+	};
+    </script>
+
+    <!-- Logout Script -->
+    <script src="/js/S_logout.js"></script> 
+    
+  </body>
+  </html>
