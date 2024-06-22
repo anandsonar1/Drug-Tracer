@@ -1,4 +1,5 @@
 Blockchain-Based Drug Traceability System
+
 This repository contains a blockchain-based system designed to enhance the traceability of pharmaceutical products. Traditional paper-based systems are vulnerable to errors, fraud, and counterfeiting, posing serious health risks and financial losses. By leveraging blockchain technology, this project aims to provide a decentralized and tamper-proof solution to ensure transparency and accountability throughout the drug supply chain.
 
 Key Features
@@ -45,6 +46,7 @@ git clone https://github.com/your-username/blockchain-drug-traceability.git
 cd blockchain-drug-traceability
 
 Install Dependencies
+
 Run the Application
 
 Access the Application:
